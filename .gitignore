@@ -3,8 +3,7 @@ eval/*.json
 eval/bert-base-chinese
 eval/format.py
 
-train/retriever/check_dup.py
-train/retriever/dense_train.json
+retriever/train/dense_train.json
 
 data/case_corpus.jsonl
 data/qrels_file
