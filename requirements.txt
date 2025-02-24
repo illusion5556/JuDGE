@@ -1,0 +1,6 @@
+jieba==0.42.1
+bert_score
+nltk==3.9.1
+tqdm==4.67.1
+Levenshtein==0.25.1
+chinese2digits==6.0.2
