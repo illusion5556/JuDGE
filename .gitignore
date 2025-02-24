@@ -1,4 +1,15 @@
 eval/*.jsonl
 eval/*.json
-eval/__pycache__
 eval/bert-base-chinese
+eval/format.py
+
+train/retriever/check_dup.py
+train/retriever/dense_train.json
+
+data/case_corpus.jsonl
+data/qrels_file
+data/qrels_file_train
+data/test.json
+data/train.json
+
+**/__pycache__/
