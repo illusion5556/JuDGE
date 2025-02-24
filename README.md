@@ -1,6 +1,3 @@
-参考 STARD 的官方 Github
-
-https://github.com/oneal2000/STARD/tree/main
 
 # JuDGE: Benchmarking Judgment Document Generation for Chinese Law System
 
