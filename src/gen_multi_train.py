@@ -108,7 +108,7 @@ case_corpus_path = '../data/case_corpus.jsonl'
 law_result = extract_law_texts(law_runfile_path, law_corpus_path)
 qw_result = extract_case_texts(case_runfile_path, case_corpus_path, queryId_to_text)
 
-jsonl_file_path = 'train_multi.json'
+jsonl_file_path = '../train/mrag/train_multi.json'
 with open(jsonl_file_path, 'w') as jsonl_file:
     for query_id, laws in law_result.items():
         query_text = queryId_to_text[query_id]

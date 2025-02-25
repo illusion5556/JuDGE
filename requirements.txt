@@ -4,7 +4,3 @@ nltk==3.9.1
 tqdm==4.67.1
 Levenshtein==0.25.1
 chinese2digits==6.0.2
-pytorch==1.8.0  
-faiss-cpu==1.6.5  
-transformers==4.2.0  
-datasets==1.1.3
