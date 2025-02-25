@@ -6,7 +6,7 @@ eval/format.py
 retriever/train/dense_train.json
 
 data/case_corpus.jsonl
-data/qrels_file
+data/qrels_file_test
 data/qrels_file_train
 data/test.json
 data/train.json
