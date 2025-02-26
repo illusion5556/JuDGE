@@ -43,14 +43,14 @@ no_judge = set()
 
 with open(args.run_file_train) as f: 
     for l in f: # 对于rank_file中的每一行：
-        qid, _, pid, _, _ = l.split()
+        qid, _, pid, _, _, _ = l.split()
         if qid not in qrel: # 如果query没有对应的相关doc，则添加到no_judge中
             no_judge.add(qid)
             continue
-        if pid in qrel[qid]:  # relevant
+        if int(pid) in qrel[qid]:  # relevant
             continue
         # 将事实上不相关但是在rank_file中的doc添加到query的rankings映射list中
-        rankings[qid].append(pid)
+        rankings[qid].append(int(pid))
 
 print(f'{len(no_judge)} queries not judged and skipped', flush=True)
 
@@ -64,7 +64,7 @@ with open(args.qry_train_file, 'r') as f1, open(args.law_data_file, 'r') as f2:
         law_data.append(tmp)  
     
 did_2_body = {int(x['text_id']):x['text'] for x in law_data}
-qid_2_body = {int(x['text_id']):x['text'] for x in qry_train_data}
+qid_2_body = {x['text_id']:x['text'] for x in qry_train_data}
 
 tokenizer = AutoTokenizer.from_pretrained(args.tokenizer_name, use_fast=True)
 

@@ -40,6 +40,7 @@ for PART in "${PARTS[@]}"; do
         echo
     fi
 
+    mkdir -p encode/$MODEL_NAME
     # encode corpus
     CUDA_VISIBLE_DEVICES=$CUDA_DEVICE python -m dense.driver.encode \
         --output_dir encode/$MODEL_NAME \
@@ -81,7 +82,7 @@ for PART in "${PARTS[@]}"; do
     echo
 
     python rank2trec.py \
-        --rank_txt_file encode/$MODEL_NAME/rank_$PART.txt \
+        --rank_txt_file encode/$MODEL_NAME/rank_$PART.tsv \
         --run_file encode/$MODEL_NAME/run_file_$PART \
         --model_name $MODEL_NAME \
         --part $PART

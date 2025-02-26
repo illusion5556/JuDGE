@@ -1,6 +1,6 @@
 PRETRAINED_MODEL="../retriever/chinese-roberta-wwm"
 PARTS=("train" "test")  # 需要遍历的 PART
-CUDA_DEVICE="1" # 定义要使用的是哪块GPU
+CUDA_DEVICE="8" # 定义要使用的是哪块GPU
 
 # build train file
 python helpers/build_train_from_ranking.py \
@@ -11,6 +11,8 @@ python helpers/build_train_from_ranking.py \
     --qry_train_file ../data/train.json \
     --law_data_file ../data/law_corpus.jsonl
 
+echo "Train file builded! "
+echo
 
 # training
 CUDA_VISIBLE_DEVICES=$CUDA_DEVICE python run_reranker.py \
@@ -25,9 +27,12 @@ CUDA_VISIBLE_DEVICES=$CUDA_DEVICE python run_reranker.py \
     --overwrite_output_dir \
     --dataloader_num_workers 8 \
 
+echo "Training process completed! "
+echo
+
 # Define the parts: train and test
 for PART in "${PARTS[@]}"; do
-    # Build JSON
+    Build JSON
     mkdir -p result/$PART
     python helpers/topk_text_2_json.py \
         --tokenizer $PRETRAINED_MODEL \
@@ -38,6 +43,9 @@ for PART in "${PARTS[@]}"; do
         --qry_train_file ../data/$PART.json \
         --law_data_file ../data/law_corpus.jsonl \
         --run_file_train ../retriever/encode/lr/run_file_$PART
+    
+    echo "Json building for $PART completed! "
+    echo
 
     # Inference
     CUDA_VISIBLE_DEVICES=$CUDA_DEVICE python run_reranker.py \
@@ -52,14 +60,20 @@ for PART in "${PARTS[@]}"; do
         --pred_path result/$PART/all.json \
         --pred_id_file result/$PART/ids.tsv \
         --rank_score_path score/$PART/score.txt # Specify the path to score.txt
+    
+    echo "Inference for $PART completed! "
+    echo
 
     # Convert to TREC format & evaluate
     python helpers/score_to_tein.py \
         --score_file score/$PART/score.txt \
         --reranker_run_file score/$PART/reranker_run_file_$PART \
         --part $PART
+    
+    echo "Converting to trec format for $PART completed! "
+    echo
 
     # TREC evaluation
-    ./trec_eval/trec_eval ../data/qrels_file_$PART score/$PART/reranker_run_file_$PART
-    ./trec_eval/trec_eval ../data/qrels_file_$PART score/$PART/reranker_run_file_$PART -m recall
+    ./../trec_eval/trec_eval ../data/qrels_file_$PART score/$PART/reranker_run_file_$PART
+    ./../trec_eval/trec_eval ../data/qrels_file_$PART score/$PART/reranker_run_file_$PART -m recall
 done

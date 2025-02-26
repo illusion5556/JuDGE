@@ -34,13 +34,13 @@ with open(args.qry_train_file, 'r') as f1, open(args.law_data_file, 'r') as f2:
         law_data.append(tmp)
         
 did_2_body = {int(x['text_id']):x['text'] for x in law_data}
-qid_2_body = {int(x['text_id']):x['text'] for x in qry_train_data}
+qid_2_body = {x['text_id']:x['text'] for x in qry_train_data}
   
 rankings = defaultdict(list)
 with open(args.run_file_train) as f: 
     for l in f: # 对于rank_file中的每一行：
-        qid, _, pid, _, _ = l.split()
-        rankings[qid].append(pid)
+        qid, _, pid, _, _, _ = l.split()
+        rankings[qid].append(int(pid))
     
 with open(args.save_to, 'w') as jfile:
     all_ids = []

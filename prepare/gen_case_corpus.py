@@ -4,10 +4,10 @@ import json
 def modify_jsonl_file(input_file, output_file):
     with open(input_file, 'r', encoding='utf-8') as infile, open(output_file, 'w', encoding='utf-8') as outfile:
         data = json.load(infile)
-        for idx, item in enumerate(data):  # 行号从1开始
+        for idx, item in enumerate(data):  # 行号从0开始
             try:
                 record = {
-                    'text_id': item['CaseId'],
+                    'text_id': str(idx), # 改成了idx
                     'text': item['Fact'],
                     'fd': item['Full Document']
                 }

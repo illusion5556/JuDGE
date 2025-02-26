@@ -1,16 +1,17 @@
 # 运行前，请将sailer下载到当前路径下
 
-CUDA_DEVICE="1" # 定义要使用的是哪块GPU
+CUDA_DEVICE="8" # 定义要使用的是哪块GPU
 Q_MAX_LEN=512 # 如要调整，不可超过512
 P_MAX_LEN=200 # 如要调整，不可超过512
 MODEL_NAME="sailer"
 PART="test"
 
+mkdir -p encode/$MODEL_NAME
 # encode corpus
 CUDA_VISIBLE_DEVICES=$CUDA_DEVICE python -m dense.driver.encode \
     --output_dir encode/$MODEL_NAME \
     --tokenizer_name $MODEL_NAME \
-    --model_name_or_path $OUTPUT_MODEL_PATH \
+    --model_name_or_path $MODEL_NAME \
     --fp16 \
     --per_device_eval_batch_size 128 \
     --encode_in_path ../data/case_corpus.jsonl \
@@ -24,7 +25,7 @@ echo
 CUDA_VISIBLE_DEVICES=$CUDA_DEVICE python -m dense.driver.encode \
     --output_dir encode/$MODEL_NAME \
     --tokenizer_name $MODEL_NAME \
-    --model_name_or_path $OUTPUT_MODEL_PATH \
+    --model_name_or_path $MODEL_NAME \
     --fp16 \
     --per_device_eval_batch_size 128 \
     --encode_in_path ../data/$PART.json \
@@ -47,7 +48,7 @@ echo "Retrieving finished for $MODEL_NAME with $PART!"
 echo
 
 python rank2trec.py \
-    --rank_txt_file encode/$MODEL_NAME/rank_$PART.txt \
+    --rank_txt_file encode/$MODEL_NAME/rank_$PART.tsv \
     --run_file encode/$MODEL_NAME/run_file_$PART \
     --model_name $MODEL_NAME \
     --part $PART
