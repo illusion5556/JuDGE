@@ -13,7 +13,7 @@ def build_query_id_text_mapping(query_path):
     with open(query_path, 'r', encoding='utf-8') as f:
         for line in f:
             item = json.loads(line)
-            text_id = int(item['text_id'])
+            text_id = item['text_id']
             text = item['text']
             id_to_text[text_id] = text
     return id_to_text
@@ -24,8 +24,8 @@ def build_query_id_qw_mapping(query_path):
     with open(query_path, 'r', encoding='utf-8') as f:
         for line in f:
             item = json.loads(line)
-            text_id = int(item['text_id'])
-            qw = item['qw']
+            text_id = item['text_id']
+            qw = item['fd']
             id_to_qw[text_id] = qw
     return id_to_qw
 
@@ -46,10 +46,11 @@ def build_case_id_text_mapping(case_corpus_path):
     with open(case_corpus_path, 'r', encoding='utf-8') as f:
         for line in f:
             item = json.loads(line)
-            text_id = int(item['text_id'])
+            text_id = item['text_id']
             text = item['text']
-            qw = item['qw']
+            qw = item['fd']
             id_to_text[text_id] = (text, qw)
+
     return id_to_text
 
 # 解析 runfile 并根据编号找到对应的 text 内容
@@ -99,7 +100,7 @@ query_path = '../data/train.json'
 queryId_to_text = build_query_id_text_mapping(query_path)
 queryId_to_qw = build_query_id_qw_mapping(query_path)
 
-law_runfile_path = '../reranker/score/reranker_run_file_train'  # 替换为实际路径
+law_runfile_path = '../reranker/score/train/reranker_run_file_train'  # 替换为实际路径
 law_corpus_path = '../data/law_corpus.jsonl'  # 替换为实际路径
 
 case_runfile_path = '../retriever/encode/sailer/run_file_train'  # 替换为实际路径
@@ -108,7 +109,7 @@ case_corpus_path = '../data/case_corpus.jsonl'
 law_result = extract_law_texts(law_runfile_path, law_corpus_path)
 qw_result = extract_case_texts(case_runfile_path, case_corpus_path, queryId_to_text)
 
-jsonl_file_path = '../train/mrag/train_multi.json'
+jsonl_file_path = '../train/train_multi.json'
 with open(jsonl_file_path, 'w') as jsonl_file:
     for query_id, laws in law_result.items():
         query_text = queryId_to_text[query_id]
@@ -138,8 +139,8 @@ with open(jsonl_file_path, 'w') as jsonl_file:
 本案件事实：{query_text}
 本案件的完整判决书为：
 """
-        print("输入：", judgment_content)
-        print('-'* 100)
+        # print("输入：", judgment_content)
+        # print('-'* 100)
         # 将判决书内容写入 JSONL 文件
         record = {"input": judgment_content.strip(), "output": queryId_to_qw[query_id]}
         jsonl_file.write(json.dumps(record, ensure_ascii=False) + "\n")

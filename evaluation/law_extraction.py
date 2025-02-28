@@ -49,7 +49,7 @@ def build_law_corpus(law_corpus_file): # 建立law_corpus，提取出来的不�
     
     return law_corpus
 
-law_corpus_file = '../data/law_corpus.json'
+law_corpus_file = '../data/law_corpus.jsonl'
 law_corpus = build_law_corpus(law_corpus_file)
 
 if __name__ == '__main__': 

@@ -9,7 +9,7 @@ def get_cause_names():
             if l[-1] != '罪':
                 print(l)
             cause_names.add(l)
-    print(f'cause name num: {len(cause_names)}')
+    # print(f'cause name num: {len(cause_names)}')
     return cause_names
 
 CAUSE_NAMES = get_cause_names()
@@ -214,8 +214,8 @@ def process_special_case(l):
                 min_dist = dist
         if min_dist < 0.4:
             return best_name
-    if len(l) > 2:
-        print(f'strange name: {l}')
+    # if len(l) > 2:
+    #     print(f'strange name: {l}')
     return ''
 
 def get_crime_from_text(doc):
@@ -268,7 +268,8 @@ def get_crime_from_text(doc):
 
     # 出现无罪且没有提取到罪名时，确实为无罪的情况，对于数据集中的文档未发现例外
     if '无罪' in text and len(raw_labels) != 0:
-        print(f'{raw_labels} @@@ {text}')
+        pass
+        # print(f'{raw_labels} @@@ {text}')
     # 判决结果中没有抽取到罪名（多为二审/再审)，则从全文和标题中再抽取一遍
     elif len(raw_labels) == 0:
         raw_labels = get_labels(doc, is_qw=True)

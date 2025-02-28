@@ -1,10 +1,3 @@
-# 每次运行前删除之前生成过的
-rm ../data/case_corpus.jsonl
-rm ../data/test.json
-rm ../data/train.json
-rm ../data/qrels_file_test
-rm ../data/qrels_file_train
-
 python split.py
 echo "split done! "
 

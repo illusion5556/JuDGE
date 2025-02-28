@@ -21,6 +21,8 @@ class RelevanceEvaluator:
         }
         self.gen_data = self.load_data(gen_file)
         self.exp_data = self.load_data(exp_file)
+        print(len(self.gen_data.keys()))
+        print(len(self.exp_data.keys()))
         assert self.gen_data.keys() == self.exp_data.keys(), "Mismatch between gen_data and exp_data keys"
 
     def load_data(self, file_path):

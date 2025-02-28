@@ -1,7 +1,6 @@
-eval/*.jsonl
-eval/*.json
-eval/bert-base-chinese
-eval/format.py
+evaluation/*.jsonl
+evaluation/*.json
+evaluation/bert-base-chinese
 
 retriever/train/dense_train.json
 
@@ -13,3 +12,4 @@ data/train.json
 
 **/__pycache__/
 
+./format.py
