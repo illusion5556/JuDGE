@@ -264,7 +264,7 @@ This project is licensed under [MIT License](https://github.com/oneal2000/JuDGE/
 
 ## Citation
 
-If you use the JuDGE dataset in your research, please cite our paper.
+If you find the JuDGE dataset helpful for your research, or if you are also working on document generation in the legal domain, we would sincerely appreciate it if you could cite our paper.
 
 ```
 [Add your citation details here]
@@ -272,4 +272,6 @@ If you use the JuDGE dataset in your research, please cite our paper.
 
 ## Contact
 
-For questions or suggestions, please open an issue on GitHub or contact us at [oneal2000@126.com](oneal2000@126.com).
+Document generation in the legal domain is still an evolving research area that requires further exploration. Our dataset represents an initial step in this direction, and we warmly welcome discussions with researchers interested in this field. 
+
+If you have any questions, suggestions, or would like to discuss further, we would greatly appreciate it if you could open an issue on GitHub or reach out to us at oneal2000@126.com
