@@ -260,11 +260,11 @@ And you will get all the numbers.
 
 ## License
 
-This project is licensed under [LICENSE_NAME](https://chatgpt.com/c/LICENSE). Please review the LICENSE file for more details.
+This project is licensed under [MIT License](https://github.com/oneal2000/JuDGE/blob/main/LICENSE). Please review the LICENSE file for more details.
 
 ## Citation
 
-If you use the JuDGE dataset in your research, please cite our paper:
+If you use the JuDGE dataset in your research, please cite our paper.
 
 ```
 [Add your citation details here]
@@ -272,4 +272,4 @@ If you use the JuDGE dataset in your research, please cite our paper:
 
 ## Contact
 
-For questions or suggestions, please open an issue on GitHub or contact us at [your_email@example.com](mailto:your_email@example.com).
+For questions or suggestions, please open an issue on GitHub or contact us at [oneal2000@126.com](oneal2000@126.com).
