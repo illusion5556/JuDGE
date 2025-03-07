@@ -1,7 +1,17 @@
 import json,re
 import chinese2digits as c2d
 from tqdm import tqdm
-def get_penalcode_index_from_text(doc):
+import sys
+sys.path.append('segment')
+from segment.data_segment_xingshi import DataSegmentXingshi
+
+def get_reason(doc): # 截取doc的“判决”部分
+    parser = DataSegmentXingshi(punctuation_replace=True)
+    result = parser.parse(doc)
+    return result['reason']
+
+def get_penalcode_index_from_text(full_doc):
+    doc = get_reason(full_doc)
     patterns = [
         r"《中华人民共和国刑法》第.*?[。《判附]",  # 匹配《中华人民共和国刑法》第xx条到特定关键词
         r"《刑法》第.*?[。《判附]",             # 匹配简称《刑法》第xx条到特定关键词

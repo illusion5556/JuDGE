@@ -3,6 +3,9 @@ from bert_score import score
 import json
 import argparse
 from nltk.translate.meteor_score import meteor_score
+import sys
+sys.path.append('segment')
+from segment.data_segment_xingshi import DataSegmentXingshi
 # 如果第一次运行，需要添加下面两行
 # import nltk
 # nltk.download('wordnet')
@@ -30,24 +33,9 @@ class RelevanceEvaluator:
             return {item['id']: item['document'] for item in (json.loads(line) for line in file)}
         
     def extract_reasoning_n_judge(self, text):
-        """提取 reasoning 和 judge 部分"""
-        beg_rsn_idx = text.find('本院认为')
-        beg_jdg_idx = text.rfind('判决如下')
-        if beg_jdg_idx < 0:
-            return "", ""  # 如不存在上述判决开始词，直接返回空串，跳过
-
-        last_pos = max(  # 去掉尾巴上的相关法条
-            text.rfind("附："),
-            text.rfind("审判长"),
-            text.rfind("审判员")
-        )
-        if last_pos != -1:
-            text = text[:last_pos]
-
-        reasoning = text[beg_rsn_idx: beg_jdg_idx]
-        judge = text[beg_jdg_idx:]
-
-        return reasoning, judge
+        parser = DataSegmentXingshi(punctuation_replace=True)
+        result = parser.parse(text)
+        return result['reason'], result['judgment']
 
     def calculate_meteor(self, exp_text, gen_text):
         """计算 METEOR 分数"""

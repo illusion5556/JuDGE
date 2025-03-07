@@ -1,5 +1,8 @@
 import json,re,Levenshtein
 from tqdm import tqdm
+import sys
+sys.path.append('segment')
+from segment.data_segment_xingshi import DataSegmentXingshi
 
 def get_cause_names():
     cause_names = set()
@@ -235,9 +238,6 @@ def get_crime_from_text(doc):
     # is_qw表示是否在处理全文
     def get_labels(text, is_qw=False):
         if is_qw:
-            # 全文中要把附加的法律条文部分去掉，干扰比较大
-            text = text[:text.find('法律条文')]
-            t = patt2.search(text)
             if t is not None: text = t.group()
             # 去除无关的‘犯’字
             text = patt3.sub('', text)
@@ -270,38 +270,24 @@ def get_crime_from_text(doc):
     if '无罪' in text and len(raw_labels) != 0:
         pass
         # print(f'{raw_labels} @@@ {text}')
-    # 判决结果中没有抽取到罪名（多为二审/再审)，则从全文和标题中再抽取一遍
+    # 判决结果中没有抽取到罪名（多为二审/再审)，则从全文和标题中再抽取一遍, 暂且不考虑
     elif len(raw_labels) == 0:
-        raw_labels = get_labels(doc, is_qw=True)
+        pass
+        # raw_labels = get_labels(doc, is_qw=True)
         # raw_labels = raw_labels.union(get_labels(doc['writName']))
     # 记录二审或再审的情况
     # elif '二审' in doc['writName'] or '再审' in doc['writName']:
         # doc_logger.warning(f'再审情况 ### {raw_labels} {text}')
     return list(raw_labels)
 
-def select(doc): # 截取doc的“判决”部分，返回doc本身和截取后的doc
-    # 截取子段落
-    if "判决如下" in doc:
-        doc = doc[doc.rfind("判决如下"):] # 最后一个“判决如下”
-    if "判处如下" in doc:
-        doc = doc[doc.rfind("判处如下"):] # 最后一个“判决如下”
-        
-    last_pos = max( # 去掉尾巴上的相关法条
-        doc.rfind("如不服本"),
-        doc.rfind("附："),
-        doc.rfind("审判长"),
-        doc.rfind("审判员")
-    )
-    if last_pos != -1:
-        doc = doc[:last_pos]
-    
-    return doc
+def get_judgment(doc): # 截取doc的“判决”部分，返回doc本身和截取后的doc
+    parser = DataSegmentXingshi(punctuation_replace=True)
+    result = parser.parse(doc)
+    return result['judgment']
 
 def get_crime(full_doc):
-    doc = select(full_doc)
-    crime_list = get_crime_from_text(doc)
-    if len(crime_list) == 0:
-        crime_list = get_crime_from_text(full_doc)
+    judgment = get_judgment(full_doc)
+    crime_list = get_crime_from_text(judgment) # 改成了如果judgment里面提取不到，那就直接认为crime_list为空了
     return crime_list
     
 
