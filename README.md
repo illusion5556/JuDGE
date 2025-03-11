@@ -129,7 +129,7 @@ This section explains the dataset format, key fields, and where to find the data
   ```
 
 - **Data Availability:**
-  Detailed information on file formats and data locations can be found in the [Data Release](https://chatgpt.com/c/DATA_RELEASE.md) document.
+  Detailed information on file formats and data locations can be found in the [Data Release](https://github.com/oneal2000/JuDGE/tree/main/data) document.
 
 ## Automatic Evaluation
 
@@ -248,7 +248,6 @@ Follow the instructions in their README respectively to configure the environmen
 
   - You can still use the **qwen** template to train and deploy LLMs similar to methods in LLM training. The difference lies in the different training data.
 
-For a comprehensive guide on reproducing the baselines, please refer to the [Baselines Documentation](https://chatgpt.com/c/docs/baselines.md).
 
 ## Baseline Results
 If you have trouble reproducing our experiments step by step, you can simply use the result files we generated in our experiments. We have attached all the result files referenced in our paper. 
