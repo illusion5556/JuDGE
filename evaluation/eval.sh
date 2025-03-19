@@ -10,7 +10,7 @@ find ../baseline_results -type f -name "*.jsonl" | while read -r GEN_FILE; do
   python calc.py --gen_file "$GEN_FILE" --exp_file "$EXP_FILE"
   
   # 执行第二个 Python 脚本
-  # python calc_rel.py --gen_file "$GEN_FILE" --exp_file "$EXP_FILE"
+  python calc_rel.py --gen_file "$GEN_FILE" --exp_file "$EXP_FILE"
 
   echo "----------------------------------------------------"
 done

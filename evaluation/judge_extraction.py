@@ -18,7 +18,7 @@ def get_time_string_from_text(doc): # 提取(包含刑期)的完整字符串
     for judge in judge_list[:3]:
         pattern = re.compile(rf'{judge}.{{1,7}}[年月]') # judge一直匹配到‘年’字或者‘月’字
         matches = re.findall(pattern, doc)
-        ch_punct_pattern = re.compile(r'[,;，。！？、；：（缓至]') # 截取到标点符号/“缓刑”之前
+        ch_punct_pattern = re.compile(r'[,;，。！？、；：（以缓至]') # 截取到标点符号/“缓刑”之前
         for i in range(len(matches)):
             match = matches[i]
             ch_punct_pos = ch_punct_pattern.search(match)
@@ -37,7 +37,7 @@ def get_time_string_from_text(doc): # 提取(包含刑期)的完整字符串
 def get_amt_string_from_text(doc): # 提取包含罚金金额的完整字符串
     pattern = re.compile(rf'罚金.{{1,15}}元') # 一直匹配到‘元’字
     matches = re.findall(pattern, doc)
-    ch_punct_pattern = re.compile(r'[，。！？、；：以已（]') # 截取到标点符号之前
+    ch_punct_pattern = re.compile(r'[，。！？、；：以已至（]') # 截取到标点符号之前
     for i in range(len(matches)):
         match = matches[i]
         ch_punct_pos = ch_punct_pattern.search(match)
@@ -55,8 +55,8 @@ def get_time_from_text(doc):
     full_doc = doc
     doc = get_judgment(doc)
     ret = get_time_string_from_text(doc)
-    # if len(ret) == 0:
-    #     ret = get_time_string_from_text(full_doc)
+    if len(ret) == 0:
+        ret = get_time_string_from_text(full_doc)
     
     ret = list(set(ret))
     # print(ret)
@@ -66,8 +66,8 @@ def get_amt_from_text(doc):
     full_doc = doc
     doc = get_judgment(doc)
     ret = get_amt_string_from_text(doc)
-    # if len(ret) == 0:
-    #     ret = get_amt_string_from_text(full_doc)
+    if len(ret) == 0:
+        ret = get_amt_string_from_text(full_doc)
     
     ret = list(set(ret))
     # print(ret)
@@ -122,7 +122,7 @@ def calc_amt_sum(doc):
     return amt_sum
 
 if __name__ == '__main__':
-    file = 'input/multi/v2/qwen2.5-7B-Instruct.json'
+    file = '/home/swh/ybq/casegen/process/input/multi/vx/qwen2.5-7B-Instruct.json'
     with open(file, 'r', encoding='utf-8') as myFile:
         data = json.load(myFile)
         

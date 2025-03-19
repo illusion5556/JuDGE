@@ -288,6 +288,8 @@ def get_judgment(doc): # 截取doc的“判决”部分，返回doc本身和截�
 def get_crime(full_doc):
     judgment = get_judgment(full_doc)
     crime_list = get_crime_from_text(judgment) # 改成了如果judgment里面提取不到，那就直接认为crime_list为空了
+    if len(crime_list) == 0:
+        crime_list = get_crime_from_text(full_doc)
     return crime_list
     
 

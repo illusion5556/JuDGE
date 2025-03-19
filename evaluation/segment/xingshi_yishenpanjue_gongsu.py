@@ -30,6 +30,8 @@ class DataSegmentXingshiGongsuYishenPanjue(DataSegmentXingshiBase):
 
         ]
         wenshu["reason"] = self.text_end_itertools(pattern, wenshu["current_content"], '')
+        if not len(wenshu["reason"]): # 改成了如果找不到“判决如下”，就把后面所有的都设置成reason
+            wenshu["reason"] = wenshu["current_content"]
         self.del_fun(wenshu, "reason")
 
     def _set_judgment(self, wenshu): # 判决结果
@@ -49,6 +51,8 @@ class DataSegmentXingshiGongsuYishenPanjue(DataSegmentXingshiBase):
             '$',
         ]
         wenshu["judgment"] = self.text_end_itertools(pattern_list, wenshu["current_content"])
+        if not len(wenshu['judgment']):
+            wenshu["judgment"] = wenshu["current_content"]
         self.del_fun(wenshu, "judgment")
 
     def _set_appendix(self, wenshu): # 尾巴上那些内容

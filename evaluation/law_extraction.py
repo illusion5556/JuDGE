@@ -13,13 +13,18 @@ def get_reason(doc): # 截取doc的“判决”部分
 def get_penalcode_index_from_text(full_doc):
     doc = get_reason(full_doc)
     patterns = [
-        r"《中华人民共和国刑法》第.*?[。《判附]",  # 匹配《中华人民共和国刑法》第xx条到特定关键词
-        r"《刑法》第.*?[。《判附]",             # 匹配简称《刑法》第xx条到特定关键词
-        r"《中华人民共和国刑法》\s?[一二三四五六七八九十第]+.*?[。《判附]"  # 匹配《中华人民共和国刑法》后跟空格和数字到特定关键词
+        r"《中华人民共和国刑法》第.*?[。《判附规]",  # 匹配《中华人民共和国刑法》第xx条到特定关键词
+        r"《刑法》第.*?[。《判附规]",             # 匹配简称《刑法》第xx条到特定关键词
+        r"《中华人民共和国刑法》\s?[零一二三四五六七八九十第]+.*?[。《判附规]"  # 匹配《中华人民共和国刑法》后跟空格和数字到特定关键词
     ]
     matches = set()  # 用 set 来去重
     for pattern in patterns:
         matches.update(re.findall(pattern, doc))
+    
+    if len(matches) == 0:
+        doc = full_doc
+        for pattern in patterns:
+            matches.update(re.findall(pattern, doc))
     # print(matches)
     # 从上述《刑法》第xx条中，获取具体条目编号
     ret = set()
@@ -63,8 +68,8 @@ law_corpus_file = '../data/law_corpus.jsonl'
 law_corpus = build_law_corpus(law_corpus_file)
 
 if __name__ == '__main__': 
-    file = 'input/multi/v8/qwen2.5-7B-Instruct.json'
-    file = 'input/finetune/v4/qwen2.5-7B-Instruct.json'
+    file = '/home/swh/ybq/casegen/process/input/multi/vx/qwen2.5-7B-Instruct.json'
+    # file = 'input/finetune/v4/qwen2.5-7B-Instruct.json'
     print(f"当前文件是{file}")
     with open(file,'r',encoding='utf-8') as myFile:
         data = json.load(myFile)
@@ -74,25 +79,35 @@ if __name__ == '__main__':
         for i, item in enumerate(data):
             exp = item['exp_ans']
             gen = item['gen_ans']
+            
+            exp_rsn = get_reason(exp)
+            gen_rsn = get_reason(gen)
+            
             # a = get_penalcode_index_from_text(content)
             exp_b = get_penalcode_index_from_text(exp)
             gen_b = get_penalcode_index_from_text(gen)
             
-            tot_len_gen += len(gen_b)
-            tot_len_exp += len(exp_b)
-            if exp_b != gen_b:
-                if len(gen_b) > len(exp_b):
-                    duole += 1
-                diff_sum += 1
-                print(f"当前是第{i}条")
-                print('exp: ', exp)
-                print(exp_b)
-                print('-' * 100)
-                print('gen: ', gen)
-                print(gen_b)
-                print('*' * 100)
-                print('*' * 100)
+            # print(f"=================={i}=========================")
+            # print(exp_rsn)
+            print(exp_b)
+            # print(gen_rsn)
+            print(gen_b)
+            
+            # tot_len_gen += len(gen_b)
+            # tot_len_exp += len(exp_b)
+            # if exp_b != gen_b:
+            #     if len(gen_b) > len(exp_b):
+            #         duole += 1
+            #     diff_sum += 1
+            #     # print(f"当前是第{i}条")
+            #     # print('exp: ', exp_rsn)
+            #     print(exp_b)
+            #     # print('-' * 100)
+            #     # print('gen: ', gen_rsn)
+            #     print(gen_b)
+            #     # print('*' * 100)
+            #     # print('*' * 100)
                 
-        print(f"共计{diff_sum}条提取出了不同的法条")
-        print(f"共计{duole}条生成了多余的法条")
-        print(f"生成的法条共计{tot_len_gen}条, 预期的法条共计{tot_len_exp}条")
+        # print(f"共计{diff_sum}条提取出了不同的法条")
+        # print(f"共计{duole}条生成了多余的法条")
+        # print(f"生成的法条共计{tot_len_gen}条, 预期的法条共计{tot_len_exp}条")
