@@ -221,6 +221,14 @@ To evaluate your generated judgment documents, follow these instructions:
    
    **ground_truth_file** is released in `JuDGE/tree/main/baseline_results/expected.jsonl`
 
+
+   Before runing `calc_rel.py`, run the following code in your conda environment:
+```python
+import nltk
+nltk.download('wordnet')
+```
+
+
 ## Necessary Preparations Before Reproduction
 
 If you want to reproduce our baseline results, you need to transform the initial data into the appropriate format. This section is the first and necessary step.
