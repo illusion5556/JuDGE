@@ -10,6 +10,63 @@ In this repository, you'll find all resources related to the **JuDGE** dataset, 
 - Implementations of multiple baseline methods and scripts to reproduce their results
 - A one-click evaluation script for quickly assessing the quality of your generated legal documents
 
+
+
+
+
+
+## Very Quick Start
+
+1. **Environment Setup**  
+   - First, follow the [environment setup instructions](https://github.com/oneal2000/JuDGE?tab=readme-ov-file#environment-setup) in this repository’s README.  
+
+2. **Generate a Judgment Document**  
+   - The file `data/text.json` is the test set. Each line is a dictionary with `text_id`, `text` (factual description section), and `fd` (full document).  
+   - Your goal is to generate a complete legal document based on the `text` field (facts).  
+   - For example, instruct an LLM:  
+     > “Please generate a full legal document based on the following facts: [text].”
+
+3. **Save Your Output**  
+   - Store your generated document as a list of JSON objects, each with:  
+     ```json
+     {
+       "id": "unique_case_identifier",
+       "document": "full generated document text"
+     }
+     ```
+
+4. **Evaluate**  
+   - Assume your results are in `./your_results.json`. CD to the `evaluation` folder, then run:
+     ```bash
+     cd evaluation
+     # Evaluate penalty accuracy, convicting accuracy, referencing accuracy
+     python calc.py \
+         --gen_file your_results.json \
+         --exp_file ../expected.jsonl
+
+     # Evaluate the reasoning and judgment sections
+     python calc_rel.py \
+         --gen_file your_results.json \
+         --exp_file ../expected.jsonl
+     ```
+   - **Note:** Before running `calc_rel.py`, install NLTK’s WordNet:
+     ```python
+     import nltk
+     nltk.download('wordnet')
+     ```
+
+5. **Check Your Environment**  
+   - We provide a sample output file. Run the following script from the `evaluation` folder. If there are no errors, your environment is set up correctly:
+     ```bash
+     python calc.py \
+         --gen_file ../Example_Output.jsonl \
+         --exp_file ../expected.jsonl
+     ```
+
+
+
+
+
 ### Repository Structure
 
 - **data/**: Contains the dataset and relevant preprocessing scripts  
