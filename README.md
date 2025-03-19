@@ -297,10 +297,18 @@ This project is licensed under [MIT License](https://github.com/oneal2000/JuDGE/
 
 ## Citation
 
-If you find the JuDGE dataset helpful for your research, or if you are also working on document generation in the legal domain, we would sincerely appreciate it if you could cite our paper.
+If you find the JuDGE dataset helpful for your research or are also working on document generation in the legal domain, we would sincerely appreciate it if you could cite our paper.
 
 ```
-[Add your citation details here]
+@misc{su2025judgebenchmarkingjudgmentdocument,
+      title={JuDGE: Benchmarking Judgment Document Generation for Chinese Legal System}, 
+      author={Weihang Su and Baoqing Yue and Qingyao Ai and Yiran Hu and Jiaqi Li and Changyue Wang and Kaiyuan Zhang and Yueyue Wu and Yiqun Liu},
+      year={2025},
+      eprint={2503.14258},
+      archivePrefix={arXiv},
+      primaryClass={cs.CL},
+      url={https://arxiv.org/abs/2503.14258}, 
+}
 ```
 
 ## Contact
