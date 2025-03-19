@@ -39,6 +39,39 @@ where $$\hat{j} = \mathcal{M}(f)$$ approximates the ground truth $j$ in terms of
 
 This section explains the dataset format, key fields, and where to find the data.
 
+### **Dataset Files**
+
+Our dataset consists of over **100,000** legal judgment documents. Due to the large file size, the full corpus is available at:
+ [Google Drive: Full Corpus](https://drive.google.com/file/d/1x8HQ1l9yOjt5SFu-5n8kPuEXnqVca-LN/view?usp=sharing)
+
+
+
+For ease of use, we provide a **high-quality subset** of judgment documents, which serves as both the training and test set:
+
+- **High-Quality Subset:** [`data/all.json`](https://github.com/JuDGE/tree/main/data/all.json)
+
+
+
+The dataset is split into separate **training** and **test** sets:
+
+- **Training Set:** [`data/train.json`](https://github.com/JuDGE/tree/main/data/train.json)
+- **Test Set:** [`data/test.json`](https://github.com/JuDGE/tree/main/data/test.json)
+
+
+
+Additionally, we offer two **supplementary corpora** that provide external knowledge to enhance judgment document generation:
+
+- **Legal Statutes Corpus:** [`data/law_corpus.jsonl`](https://github.com/JuDGE/tree/main/data/law_corpus.jsonl)
+
+- **Case Corpus (Subset)**:
+
+  `data/case_corpus.jsonl`
+
+  - **Note:** `case_corpus.jsonl` is a subset; the full case corpus is available in the [Google Drive link above](https://drive.google.com/file/d/1x8HQ1l9yOjt5SFu-5n8kPuEXnqVca-LN/view?usp=sharing).
+
+
+
+
 - **Data Structure:**
   Each judgment document is structured into a series of key-value pairs. The main fields include:
 
