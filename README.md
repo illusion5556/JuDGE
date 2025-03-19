@@ -42,7 +42,7 @@ This section explains the dataset format, key fields, and where to find the data
 
 ### **Dataset Files**
 
-Our dataset consists of over **100,000** legal judgment documents. Due to the large file size, the full corpus is available at:
+Our dataset consists of over **100,000** legal judgment documents. Due to the large file size (705.8MB), the full corpus is available at:
  [Google Drive: Full Corpus](https://drive.google.com/file/d/1x8HQ1l9yOjt5SFu-5n8kPuEXnqVca-LN/view?usp=sharing)
 
 
@@ -162,8 +162,6 @@ Additionally, we offer two **supplementary corpora** that provide external knowl
   }
   ```
 
-- **Data Availability:**
-  Detailed information on file formats and data locations can be found in the [Data Release](https://github.com/oneal2000/JuDGE/tree/main/data) document.
 
 ## Automatic Evaluation
 
