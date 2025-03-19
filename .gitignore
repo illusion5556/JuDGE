@@ -2,13 +2,13 @@ evaluation/*.jsonl
 evaluation/*.json
 evaluation/bert-base-chinese
 
-retriever/train/dense_train.json
+# retriever/train/dense_train.json
 
-data/case_corpus.jsonl
-data/qrels_file_test
-data/qrels_file_train
-data/test.json
-data/train.json
+# data/case_corpus.jsonl
+# data/qrels_file_test
+# data/qrels_file_train
+# data/test.json
+# data/train.json
 
 **/__pycache__/
 
