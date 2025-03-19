@@ -207,11 +207,21 @@ To evaluate your generated judgment documents, follow these instructions:
 
 2. **Execute the Evaluation Python Code:**
 
+   Before runing `calc_rel.py`, run the following code in your conda environment:
+    ```python
+    import nltk
+    nltk.download('wordnet')
+    ```
+
    ```bash
     cd evaluation
+    # For Penalty Acc. Convicting Acc. Referencing Acc.
     python calc.py \
         --gen_file your_gen_file \
         --exp_file ground_truth_file
+
+
+   # For Reasoning Section & Judgment Section
     python calc_rel.py \
         --gen_file your_gen_file \
         --exp_file ground_truth_file
@@ -222,11 +232,7 @@ To evaluate your generated judgment documents, follow these instructions:
    **ground_truth_file** is released in `JuDGE/tree/main/baseline_results/expected.jsonl`
 
 
-   Before runing `calc_rel.py`, run the following code in your conda environment:
-```python
-import nltk
-nltk.download('wordnet')
-```
+
 
 
 ## Necessary Preparations Before Reproduction
