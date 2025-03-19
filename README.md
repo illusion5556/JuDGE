@@ -229,7 +229,7 @@ To evaluate your generated judgment documents, follow these instructions:
 
    This requires you to specify the path to the input file and the location for the output results.
    
-   **ground_truth_file** is released in `JuDGE/tree/main/baseline_results/expected.jsonl`
+   **ground_truth_file** is released in `JuDGE/expected.jsonl`
 
 
 
