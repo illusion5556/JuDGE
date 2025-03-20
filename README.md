@@ -1,4 +1,4 @@
-# JuDGE: Benchmarking Judgment Document Generation for the Chinese Legal System
+# JuDGE: Benchmarking Judgment Document Generation for Chinese Legal System
 
 ## Overview
 
