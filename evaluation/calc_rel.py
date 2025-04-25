@@ -71,11 +71,28 @@ class RelevanceEvaluator:
         gen_reasoning_list, exp_reasoning_list, gen_judge_list, exp_judge_list = [], [], [], []
         for exp_idx, exp_ans in self.exp_data.items():
             gen_ans = self.gen_data[exp_idx]
-            gen_reasoning_list.append(" ".join(jieba.cut(self.extract_reasoning_n_judge(gen_ans)[0])))
-            exp_reasoning_list.append(" ".join(jieba.cut(self.extract_reasoning_n_judge(exp_ans)[0])))
-            gen_judge_list.append(" ".join(jieba.cut(self.extract_reasoning_n_judge(gen_ans)[1])))
-            exp_judge_list.append(" ".join(jieba.cut(self.extract_reasoning_n_judge(exp_ans)[1])))
+            # gen_reasoning_list.append(" ".join(jieba.cut(self.extract_reasoning_n_judge(gen_ans)[0])))
+            # exp_reasoning_list.append(" ".join(jieba.cut(self.extract_reasoning_n_judge(exp_ans)[0])))
+            # gen_judge_list.append(" ".join(jieba.cut(self.extract_reasoning_n_judge(gen_ans)[1])))
+            # exp_judge_list.append(" ".join(jieba.cut(self.extract_reasoning_n_judge(exp_ans)[1])))
+            gen_reasoning = " ".join(jieba.cut(self.extract_reasoning_n_judge(gen_ans)[0]))
+            exp_reasoning = " ".join(jieba.cut(self.extract_reasoning_n_judge(exp_ans)[0]))
+            gen_judge = " ".join(jieba.cut(self.extract_reasoning_n_judge(gen_ans)[1]))
+            exp_judge = " ".join(jieba.cut(self.extract_reasoning_n_judge(exp_ans)[1]))
 
+            # 截断处理
+            gen_reasoning = gen_reasoning[:512]
+            exp_reasoning = exp_reasoning[:512]
+            gen_judge = gen_judge[:512]
+            exp_judge = exp_judge[:512]
+
+            gen_reasoning_list.append(gen_reasoning)
+            exp_reasoning_list.append(exp_reasoning)
+            gen_judge_list.append(gen_judge)
+            exp_judge_list.append(exp_judge)
+
+
+        
         # 计算 reasoning 的 BERTScore
         P_rsn, R_rsn, F1_rsn = score(gen_reasoning_list, exp_reasoning_list, model_type=local_model_path)
         self.results_reasoning["BERTScore"] = F1_rsn.tolist()  # 转为普通列表方便查看

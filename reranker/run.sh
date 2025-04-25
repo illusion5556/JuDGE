@@ -1,6 +1,6 @@
 PRETRAINED_MODEL="../retriever/chinese-roberta-wwm"
 PARTS=("train" "test")  # 需要遍历的 PART
-CUDA_DEVICE="8" # 定义要使用的是哪块GPU
+CUDA_DEVICE="0" # 定义要使用的是哪块GPU
 
 # build train file
 python helpers/build_train_from_ranking.py \

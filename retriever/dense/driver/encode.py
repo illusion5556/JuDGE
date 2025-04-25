@@ -7,7 +7,7 @@ from tqdm import tqdm
 import torch
 
 from torch.utils.data import DataLoader
-from transformers import AutoConfig, AutoTokenizer
+from transformers import AutoConfig, AutoTokenizer, RobertaConfig, RobertaTokenizer
 from transformers import (
     HfArgumentParser,
 )

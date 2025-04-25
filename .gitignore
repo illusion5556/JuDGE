@@ -2,6 +2,14 @@ evaluation/*.jsonl
 evaluation/*.json
 evaluation/bert-base-chinese
 
+reranker/result
+reranker/score
+reranker/train
+
+retriever/chinese-roberta-wwm
+retriever/sailer
+retriever/encode
+retriever/train
 # retriever/train/dense_train.json
 
 # data/case_corpus.jsonl

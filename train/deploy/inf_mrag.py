@@ -5,9 +5,10 @@ import argparse
 import torch
 from difflib import SequenceMatcher
 import re
+import os
 
 # 固定的参数
-MODEL_BASE_PATH = "/liuzyai04/thuir/yuebaoqing/casegen/model/multi/"
+MODEL_BASE_PATH = "/home/ubuntu/weight/wubinglin/"
 
 # 解析命令行参数
 def parse_arguments():
@@ -39,7 +40,7 @@ def build_query_id_qw_mapping(query_path):
         for line in f:
             item = json.loads(line)
             text_id = str(item['text_id'])
-            qw = item['qw']
+            qw = item['fd']
             id_to_qw[text_id] = qw
     return id_to_qw
 
@@ -62,7 +63,7 @@ def build_case_id_text_mapping(case_corpus_path):
             item = json.loads(line)
             text_id = str(item['text_id'])
             text = item['text']
-            qw = item['qw']
+            qw = item['fd']
             id_to_text[text_id] = (text, qw)
     return id_to_text
 
@@ -152,10 +153,11 @@ def process_dataset(dataset_path, output_path, case_result, qw_result, law_resul
     with open(dataset_path, "r", encoding="utf-8") as f:
         for query_id, line in tqdm(enumerate(f), desc="Processing dataset"):
             one = json.loads(line.strip())
-            # query_id = str(one['query_id'])
-            query_id = str(query_id)
+            query_id = str(one['text_id'])
+            # query_id = str(query_id)
             
             cases = case_result.get(query_id, [])
+
             qws = qw_result[query_id]
             
             relevant_cases = f"相关案例：{cases[0]}" if cases else "相关案例：无相关案例"
@@ -174,8 +176,8 @@ def process_dataset(dataset_path, output_path, case_result, qw_result, law_resul
             laws = law_result.get(query_id, [])
             relevant_laws = "\n".join([f"{i+1}. {law}" for i, law in enumerate(laws[:10])])
             
-            fact = one['input']
-            exp_ans = one['output']
+            fact = one['text']
+            exp_ans = one['fd']
             
             gen_ans = generate_reasoning(fact, relevant_cases, relevant_qw, relevant_laws)
             print(f"Generated answer: {gen_ans}")
@@ -186,6 +188,11 @@ def process_dataset(dataset_path, output_path, case_result, qw_result, law_resul
             }
             test_result.append(entry)
     
+    if not os.path.exists(output_path):
+        os.makedirs(output_path)
+
+    doc_name = args.suffix+".json"
+    output_path = os.path.join(output_path,doc_name)
     with open(output_path, 'w', encoding='utf-8') as f:
         json.dump(test_result, f, ensure_ascii=False, indent=4)
     print(f"Results saved to {output_path}")
@@ -196,15 +203,15 @@ def main():
     model_name = f"{MODEL_BASE_PATH}{args.suffix}"
     
     # 示例调用
-    query_path = '../data/queries.json'
+    query_path = '../../data/test.json'
     queryId_to_text = build_query_id_text_mapping(query_path)
     queryId_to_qw = build_query_id_qw_mapping(query_path)
 
-    law_runfile_path = '../dense_result/LR/run_file'  # 替换为实际路径
-    law_corpus_path = '../data/law_corpus.json'  # 替换为实际路径
+    law_runfile_path = '../../reranker/score/test/reranker_run_file_test'  # 替换为实际路径
+    law_corpus_path = '../../data/law_corpus.jsonl'  # 替换为实际路径
 
-    case_runfile_path = '../dense_result/sailer/run_file'  # 替换为实际路径
-    case_corpus_path = '../data/case_corpus.json'
+    case_runfile_path = '../../retriever/encode/sailer/run_file_test'  # 替换为实际路径
+    case_corpus_path = '../../data/case_corpus.jsonl'
 
     law_result = extract_law_texts(law_runfile_path, law_corpus_path)
     case_result, qw_result = extract_case_texts(case_runfile_path, case_corpus_path, queryId_to_text)
@@ -217,7 +224,7 @@ def main():
     )
     tokenizer = AutoTokenizer.from_pretrained(model_name)
 
-    dataset_path = "../data/test.json"
+    dataset_path = "../../data/test.json"
     process_dataset(dataset_path, args.output_path, case_result, qw_result, law_result)
 
 if __name__ == "__main__":

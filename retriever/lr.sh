@@ -18,27 +18,27 @@ for PART in "${PARTS[@]}"; do
     echo "Running with MODEL_NAME=$MODEL_NAME and PART=$PART"
 
     # 仅当 MODEL_NAME 是 "lr" 且 PART 是 "train" 时才执行训练
-    if ["$PART" == "train" ]; then
-        # train dense-retriever model
-        CUDA_VISIBLE_DEVICES=$CUDA_DEVICE python -m dense.driver.train \
-            --do_train \
-            --train_dir train \
-            --output_dir $OUTPUT_MODEL_PATH \
-            --tokenizer_name $PRETRAINED_MODEL \
-            --model_name_or_path $PRETRAINED_MODEL \
-            --save_steps $SAVE_STEPS \
-            --per_device_train_batch_size $BATCH_SIZE \
-            --learning_rate $LEARNING_RATE \
-            --num_train_epochs $EPOCH \
-            --dataloader_num_workers $DATALOADER_NUM_WORKERS \
-            --overwrite_output_dir \
-            --q_max_len $Q_MAX_LEN \
-            --p_max_len $P_MAX_LEN \
-            --fp16
+    # if [ $PART == "train" ]; then
+    #     # train dense-retriever model
+    #     CUDA_VISIBLE_DEVICES=$CUDA_DEVICE python -m dense.driver.train \
+    #         --do_train \
+    #         --train_dir train \
+    #         --output_dir $OUTPUT_MODEL_PATH \
+    #         --tokenizer_name $PRETRAINED_MODEL \
+    #         --model_name_or_path $PRETRAINED_MODEL \
+    #         --save_steps $SAVE_STEPS \
+    #         --per_device_train_batch_size $BATCH_SIZE \
+    #         --learning_rate $LEARNING_RATE \
+    #         --num_train_epochs $EPOCH \
+    #         --dataloader_num_workers $DATALOADER_NUM_WORKERS \
+    #         --overwrite_output_dir \
+    #         --q_max_len $Q_MAX_LEN \
+    #         --p_max_len $P_MAX_LEN \
+    #         --fp16
 
-        echo "Training finished!"
-        echo
-    fi
+    #     echo "Training finished!"
+    #     echo
+    # fi
 
     mkdir -p encode/$MODEL_NAME
     # encode corpus
