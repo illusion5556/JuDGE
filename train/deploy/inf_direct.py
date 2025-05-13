@@ -3,11 +3,12 @@ from tqdm import tqdm
 from transformers import AutoModelForCausalLM, AutoTokenizer
 import argparse
 import torch
+import os
 
 def parse_arguments():
     parser = argparse.ArgumentParser(description='Run legal document generation with specified model suffix.')
     parser.add_argument('--suffix', type=str, required=True, help='Suffix of the model path')
-    parser.add_argument('--dataset_path', type=str, default="../data/test.json", help='Path to the dataset')
+    parser.add_argument('--dataset_path', type=str, default="../../data/test.json", help='Path to the dataset')
     parser.add_argument('--output_path', type=str, default="../output/finetune/output.json", help='Path to save the output')
     return parser.parse_args()
 
@@ -46,8 +47,8 @@ def process_dataset(dataset_path, output_path):
     with open(dataset_path, "r") as f:
         for line in tqdm(f):
             one = json.loads(line.strip())
-            gen_ans = generate_reasoning(one['input'])
-            exp_ans = one['output']
+            gen_ans = generate_reasoning(one['text'])
+            exp_ans = one['fd']
             print(f"Generated answer: {gen_ans}")
 
             # Update data and add to results list
@@ -57,6 +58,11 @@ def process_dataset(dataset_path, output_path):
             }
             test_result.append(entry)
 
+    if not os.path.exists(output_path):
+        os.makedirs(output_path)
+    args = parse_arguments()
+    doc_name = args.suffix+".json"
+    output_path = os.path.join(output_path,doc_name)
     # Save the results
     with open(output_path, 'w') as f:
         json.dump(test_result, f, ensure_ascii=False, indent=4)
@@ -64,7 +70,7 @@ def process_dataset(dataset_path, output_path):
 
 def main():
     args = parse_arguments()
-    model_name = f"/liuzyai04/thuir/yuebaoqing/LLM/{args.suffix}"
+    model_name = f"/home/ubuntu/weight/wubinglin/{args.suffix}"
 
     global model, tokenizer
     model = AutoModelForCausalLM.from_pretrained(

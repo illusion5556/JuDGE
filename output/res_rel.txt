@@ -1,0 +1,41 @@
+reasoning 平均指标：
+METEOR: Mean = 0.4434
+BERTScore: Mean = 0.6896
+
+judge 平均指标：
+METEOR: Mean = 0.4518
+BERTScore: Mean = 0.6736
+This is the metrics from file /home/ubuntu/JuDGE/output/mrag/Qwen2.5-3B-Instruct.json!
+
+---------------------------------------------------------------------------------
+
+reasoning 平均指标：
+METEOR: Mean = 0.5325
+BERTScore: Mean = 0.8051
+
+judge 平均指标：
+METEOR: Mean = 0.6232
+BERTScore: Mean = 0.8511
+This is the metrics from file /home/ubuntu/JuDGE/output/mrag/Qwen2.5-7B-Instruct.json!
+
+-----------------------------------------------------------------------------------
+
+reasoning 平均指标：
+METEOR: Mean = 0.5098
+BERTScore: Mean = 0.5852
+
+judge 平均指标：
+METEOR: Mean = 0.5571
+BERTScore: Mean = 0.2183
+This is the metrics from file /home/ubuntu/JuDGE/output/mrag/Qwen2.5-7B.json!
+
+-----------------------------------------------------------------------------------
+
+reasoning 平均指标：
+METEOR: Mean = 0.5904
+BERTScore: Mean = 0.8255
+
+judge 平均指标：
+METEOR: Mean = 0.6838
+BERTScore: Mean = 0.8278
+This is the metrics from file /home/ubuntu/JuDGE/output/mrag_rl/grpo_test_3b_meth.json!

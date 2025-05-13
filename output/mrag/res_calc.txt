@@ -1,0 +1,39 @@
+
+金额格式不对 罚金人民币X万元
+Average Judge Time Score: 0.5851, Average Amount Score: 0.4963
+Average Crime Recall: 0.9132, Average Crime Precision: 0.9092, F1 Score: 0.9112
+Average Penalcode Index Recall: 0.6570, Average Penalcode Index Precision: 0.6187, F1 Score: 0.6373
+501 375
+This is the metrics from file /home/ubuntu/JuDGE/output/mrag/Qwen2.5-3B-Instruct.json!
+
+-----------------------------------------------------------------------------------------
+
+Average Judge Time Score: 0.6694, Average Amount Score: 0.5448
+Average Crime Recall: 0.9571, Average Crime Precision: 0.9584, F1 Score: 0.9578
+Average Penalcode Index Recall: 0.7311, Average Penalcode Index Precision: 0.6879, F1 Score: 0.7088
+501 376
+This is the metrics from file /home/ubuntu/JuDGE/output/mrag/Qwen2.5-7B-Instruct.json!
+
+-----------------------------------------------------------------------------------------
+
+Average Judge Time Score: 0.1543, Average Amount Score: 0.1416
+Average Crime Recall: 0.2485, Average Crime Precision: 0.2505, F1 Score: 0.2495
+Average Penalcode Index Recall: 0.2005, Average Penalcode Index Precision: 0.2035, F1 Score: 0.2020
+501 360
+This is the metrics from file /home/ubuntu/JuDGE/output/mrag/Qwen2.5-7B.json!
+
+-----------------------------------------------------------------------------------------
+
+Average Judge Time Score: 0.6880, Average Amount Score: 0.5467
+Average Crime Recall: 0.9441, Average Crime Precision: 0.9491, F1 Score: 0.9466
+Average Penalcode Index Recall: 0.7644, Average Penalcode Index Precision: 0.7465, F1 Score: 0.7554
+501 369
+This is the metrics from file /home/ubuntu/JuDGE/output/mrag/3b_ins_mrag_ep4.json!
+
+-----------------------------------------------------------------------------------------
+
+Average Judge Time Score: 0.7018, Average Amount Score: 0.5567
+Average Crime Recall: 0.9591, Average Crime Precision: 0.9611, F1 Score: 0.9601
+Average Penalcode Index Recall: 0.7905, Average Penalcode Index Precision: 0.7641, F1 Score: 0.7771
+501 376
+This is the metrics from file /home/ubuntu/JuDGE/output/mrag/7b_ins_mrag_ep4.json!

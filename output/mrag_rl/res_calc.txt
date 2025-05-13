@@ -1,0 +1,38 @@
+
+Average Judge Time Score: 0.6784, Average Amount Score: 0.4890
+Average Crime Recall: 0.9291, Average Crime Precision: 0.9242, F1 Score: 0.9266
+Average Penalcode Index Recall: 0.7091, Average Penalcode Index Precision: 0.6211, F1 Score: 0.6622
+501 400
+This is the metrics from file /home/ubuntu/JuDGE/output/mrag_rl/grpo_test_3b_meth.json!
+
+-----------------------------------------------------------------------------------------
+
+Average Judge Time Score: 0.7207, Average Amount Score: 0.5471
+Average Crime Recall: 0.9561, Average Crime Precision: 0.9601, F1 Score: 0.9581
+Average Penalcode Index Recall: 0.7239, Average Penalcode Index Precision: 0.8049, F1 Score: 0.7623
+501 375
+This is the metrics from file /home/ubuntu/JuDGE/output/mrag_rl/grpo_3b_multi.json!
+
+-------------------------------------------------------------------------------------------
+
+Average Judge Time Score: 0.6499, Average Amount Score: 0.4745
+Average Crime Recall: 0.9571, Average Crime Precision: 0.9604, F1 Score: 0.9587
+Average Penalcode Index Recall: 0.5702, Average Penalcode Index Precision: 0.8710, F1 Score: 0.6892
+501 371
+This is the metrics from file /home/ubuntu/JuDGE/output/mrag_rl/grpo_3b_mb.json!
+
+--------------------------------------------------------------------------------------------
+
+Average Judge Time Score: 0.7103, Average Amount Score: 0.5430
+Average Crime Recall: 0.9571, Average Crime Precision: 0.9621, F1 Score: 0.9596
+Average Penalcode Index Recall: 0.6354, Average Penalcode Index Precision: 0.8516, F1 Score: 0.7278
+501 375
+This is the metrics from file /home/ubuntu/JuDGE/output/mrag_rl/multi_mb_bt_p1.json!
+
+----------------------------------------------------------------------------------------------
+
+Average Judge Time Score: 0.6862, Average Amount Score: 0.5762
+Average Crime Recall: 0.9631, Average Crime Precision: 0.9621, F1 Score: 0.9626
+Average Penalcode Index Recall: 0.7883, Average Penalcode Index Precision: 0.7445, F1 Score: 0.7658
+501 367
+This is the metrics from file /home/ubuntu/JuDGE/output/mrag_rl/mragsft_multi_bt_p1.json!

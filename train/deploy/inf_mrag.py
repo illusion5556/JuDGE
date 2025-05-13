@@ -15,6 +15,7 @@ def parse_arguments():
     parser = argparse.ArgumentParser(description='Run legal document generation with specified model suffix.')
     parser.add_argument('--suffix', type=str, required=True, help='Suffix of the model path')
     parser.add_argument('--output_path', type=str, required=True, help='Path to save the output')
+    parser.add_argument('--model_path', type=str, required=True, help='Path to the model')
     return parser.parse_args()
 
 def are_strings_similar(str1, str2, threshold=0.85):
@@ -191,6 +192,7 @@ def process_dataset(dataset_path, output_path, case_result, qw_result, law_resul
     if not os.path.exists(output_path):
         os.makedirs(output_path)
 
+    args = parse_arguments()
     doc_name = args.suffix+".json"
     output_path = os.path.join(output_path,doc_name)
     with open(output_path, 'w', encoding='utf-8') as f:
@@ -200,7 +202,7 @@ def process_dataset(dataset_path, output_path, case_result, qw_result, law_resul
 # 主函数
 def main():
     args = parse_arguments()
-    model_name = f"{MODEL_BASE_PATH}{args.suffix}"
+    model_name = f"{args.model_path}{args.suffix}"
     
     # 示例调用
     query_path = '../../data/test.json'

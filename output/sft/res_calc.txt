@@ -1,0 +1,21 @@
+Average Judge Time Score: 0.6871, Average Amount Score: 0.5382
+Average Crime Recall: 0.9431, Average Crime Precision: 0.9464, F1 Score: 0.9448
+Average Penalcode Index Recall: 0.7448, Average Penalcode Index Precision: 0.7743, F1 Score: 0.7593
+501 372
+This is the metrics from file /home/ubuntu/JuDGE/output/sft/3b_ins.json!
+
+----------------------------------------------------------------
+
+Average Judge Time Score: 0.6904, Average Amount Score: 0.5269
+Average Crime Recall: 0.9461, Average Crime Precision: 0.9474, F1 Score: 0.9468
+Average Penalcode Index Recall: 0.7679, Average Penalcode Index Precision: 0.7542, F1 Score: 0.7610
+501 381
+This is the metrics from file /home/ubuntu/JuDGE/output/sft/3b_ins_ep3.json!
+
+----------------------------------------------------------------
+
+Average Judge Time Score: 0.6925, Average Amount Score: 0.5800
+Average Crime Recall: 0.9551, Average Crime Precision: 0.9534, F1 Score: 0.9543
+Average Penalcode Index Recall: 0.7592, Average Penalcode Index Precision: 0.7751, F1 Score: 0.7671
+501 370
+This is the metrics from file /home/ubuntu/JuDGE/output/sft/7b_ins_ep3.json!

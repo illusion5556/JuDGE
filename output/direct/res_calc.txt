@@ -1,0 +1,15 @@
+金额格式不对 罚金
+Average Judge Time Score: 0.5950, Average Amount Score: 0.4677
+Average Crime Recall: 0.8533, Average Crime Precision: 0.8556, F1 Score: 0.8545
+Average Penalcode Index Recall: 0.5780, Average Penalcode Index Precision: 0.6978, F1 Score: 0.6323
+501 368
+This is the metrics from file /home/ubuntu/JuDGE/output/direct/Qwen2.5-3B-Instruct.json!
+
+-------------------------------------------------------------------------------------------
+
+金额格式不对 罚金人民币一万元二千元
+Average Judge Time Score: 0.7032, Average Amount Score: 0.5425
+Average Crime Recall: 0.9311, Average Crime Precision: 0.9335, F1 Score: 0.9323
+Average Penalcode Index Recall: 0.6050, Average Penalcode Index Precision: 0.7851, F1 Score: 0.6834
+501 376
+This is the metrics from file /home/ubuntu/JuDGE/output/direct/Qwen2.5-7B-Instruct.json!

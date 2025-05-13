@@ -1,0 +1,53 @@
+
+reasoning 平均指标：
+METEOR: Mean = 0.5904
+BERTScore: Mean = 0.8255
+
+judge 平均指标：
+METEOR: Mean = 0.6838
+BERTScore: Mean = 0.8278
+This is the metrics from file /home/ubuntu/JuDGE/output/mrag_rl/grpo_test_3b_meth.json!
+
+------------------------------------------------------------------------------------------
+
+reasoning 平均指标：
+METEOR: Mean = 0.4686
+BERTScore: Mean = 0.8314
+
+judge 平均指标：
+METEOR: Mean = 0.6568
+BERTScore: Mean = 0.8859
+This is the metrics from file /home/ubuntu/JuDGE/output/mrag_rl/grpo_3b_multi.json!
+
+----------------------------------------------------------------------------------------------------
+
+reasoning 平均指标：
+METEOR: Mean = 0.4353
+BERTScore: Mean = 0.8320
+
+judge 平均指标：
+METEOR: Mean = 0.6512
+BERTScore: Mean = 0.8925
+This is the metrics from file /home/ubuntu/JuDGE/output/mrag_rl/grpo_3b_mb.json!
+
+----------------------------------------------------------------------------------------------------
+
+reasoning 平均指标：
+METEOR: Mean = 0.4438
+BERTScore: Mean = 0.8323
+
+judge 平均指标：
+METEOR: Mean = 0.6600
+BERTScore: Mean = 0.8959
+This is the metrics from file /home/ubuntu/JuDGE/output/mrag_rl/multi_mb_bt_p1.json!
+
+--------------------------------------------------------------------------------------------------
+
+reasoning 平均指标：
+METEOR: Mean = 0.6292
+BERTScore: Mean = 0.8501
+
+judge 平均指标：
+METEOR: Mean = 0.7155
+BERTScore: Mean = 0.8945
+This is the metrics from file /home/ubuntu/JuDGE/output/mrag_rl/mragsft_multi_bt_p1.json!
