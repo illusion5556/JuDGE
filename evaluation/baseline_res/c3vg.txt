@@ -1,0 +1,6 @@
+Average Crime Recall: 0.8303, Average Crime Precision: 0.8463, F1 Score: 0.8382
+This is the metrics from file /home/ubuntu/C3VG-main/cvg_eval/test_judgetrain_view.json!
+reasoning 平均指标：
+METEOR: Mean = 0.2188
+BERTScore: Mean = 0.7285
+This is the metrics from file /home/ubuntu/C3VG-main/cvg_eval/test_judgetrain_view.json!

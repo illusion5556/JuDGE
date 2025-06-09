@@ -26,3 +26,5 @@ evaluation/test.py
 
 evaluation/segment/test.py
 evaluation/segment/test_one_file.py
+
+output/*

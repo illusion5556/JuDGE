@@ -58,9 +58,12 @@ class MetricsCalculator:
     def calc_metrics(self):
         for exp_id, exp_ans in self.exp_data.items():
             gen_ans = self.gen_data[exp_id]
+            
+            
 
             exp_crime, exp_time, exp_amount, exp_penalcode_index = self.get_all_from_text(exp_ans)
             gen_crime, gen_time, gen_amount, gen_penalcode_index = self.get_all_from_text(gen_ans)
+
 
             crime_rec, crime_prec = self.calculate_recall_and_precision(exp_crime, gen_crime)
             penalcode_index_rec, penalcode_index_prec = self.calculate_recall_and_precision(exp_penalcode_index, gen_penalcode_index)

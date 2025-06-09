@@ -6,7 +6,7 @@ cd /home/ubuntu/JuDGE/train/deploy
 # wait
 # echo "All inference executed."
 
-CUDA_VISIBLE_DEVICES=0 python inf_mrag.py --suffix mragsft_multi_bt_p1 --output_path ../../output/mrag_rl --model_path /home/ubuntu/weight/wubinglin/verl/hf/judge/&
+CUDA_VISIBLE_DEVICES=7 python inf_mrag.py --suffix grpo_3b_mb_sftwm --output_path ../../output/mrag_rl --model_path /home/ubuntu/weight/wubinglin/verl/hf/judge/&
 # CUDA_VISIBLE_DEVICES=1 python inf_mrag.py --suffix multi_mb_bt_p1 --output_path ../../output/mrag_rl --model_path /home/ubuntu/weight/wubinglin/verl/hf/judge/&
 # CUDA_VISIBLE_DEVICES=2 python inf_mrag.py --suffix 7b_ins_mrag_ep4 --output_path ../../output/mrag --model_path /home/ubuntu/weight/wubinglin/judge_ft/full_sft/&
 # CUDA_VISIBLE_DEVICES=4 python inf_mrag.py --suffix 3b_ins_mrag_ep4 --output_path ../../output/mrag --model_path /home/ubuntu/weight/wubinglin/judge_ft/full_sft/&
