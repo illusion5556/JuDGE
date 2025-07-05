@@ -143,7 +143,7 @@ case_corpus_path = '../data/all_amend.json'
 law_result = extract_law_texts(law_runfile_path, law_corpus_path)
 case_result = extract_case_texts(case_runfile_path, case_corpus_path, law_corpus_path, queryId_to_text)
 
-jsonl_file_path = f'../train/{suffix}_ljp_law30.json'
+jsonl_file_path = f'../train/{suffix}_ljp_law10.json'
 queryId_to_ljp = build_case_id_text_mapping(case_corpus_path)
 with open(jsonl_file_path, 'w') as jsonl_file:
     for query_id, laws in law_result.items():
@@ -154,7 +154,7 @@ with open(jsonl_file_path, 'w') as jsonl_file:
         # case2 = case_text(cases[1])
         
          
-        all_laws = laws[:30] # 只取top10
+        all_laws = laws[:10] # 只取top10
         # all_laws = []
         # filter_laws = all_laws
         filter_laws = []
