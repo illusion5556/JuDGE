@@ -1,6 +1,6 @@
 import json
 
-with open('test.json','r',encoding='utf-8' )as f1,open("test_sft.json",'w',encoding='utf-8' )as f2:
+with open('/home/ubuntu/JuDGE_edit/lecardv2-doc/lecardv2_sample.json','r',encoding='utf-8' )as f1,open("/home/ubuntu/JuDGE_edit/lecardv2-doc/lecardv2_sample_sft.json",'w',encoding='utf-8' )as f2:
   
     res = []
     lines = []

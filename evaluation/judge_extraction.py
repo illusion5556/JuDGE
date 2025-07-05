@@ -115,7 +115,8 @@ def calc_amt_sum(doc):
     for amt_str in all_amt_str:
         num_list = c2d.takeNumberFromString(amt_str)['digitsStringList']
         if len(num_list) == 1:
-            amt_sum += int(num_list[0])
+            # amt_sum += int(num_list[0])
+            amt_sum  += int(float(num_list[0]))
         else:
             print('金额格式不对', amt_str)
     

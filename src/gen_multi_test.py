@@ -104,6 +104,7 @@ law_runfile_path = '../reranker/score/test/reranker_run_file_test'  # 替换为�
 law_corpus_path = '../data/law_corpus.jsonl'  # 替换为实际路径
 
 case_runfile_path = '../retriever/encode/sailer/run_file_test'  # 替换为实际路径
+case_runfile_path = '../retriever/encode/sailer/run_file_test'  # 替换为实际路径
 case_corpus_path = '../data/case_corpus.jsonl'
 
 law_result = extract_law_texts(law_runfile_path, law_corpus_path)

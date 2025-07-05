@@ -21,6 +21,7 @@ class RelevanceEvaluator:
             "METEOR": [],
             "BERTScore": [],
         }
+        self.structure=[]
         self.gen_data, self.exp_data = self.load_data(gen_file)
         print(len(self.gen_data.keys()))
         print(len(self.exp_data.keys()))
@@ -63,8 +64,9 @@ class RelevanceEvaluator:
 
             # 如果任意部分提取失败，跳过这条数据
             if not exp_reasoning or not exp_judge or not gen_reasoning or not gen_judge:
+                self.structure.append(0)
                 continue
-
+            self.structure.append(1)
             # 分别计算 metrics
             self.calculate_metrics(exp_reasoning, gen_reasoning, self.results_reasoning)
             self.calculate_metrics(exp_judge, gen_judge, self.results_judge)
@@ -116,6 +118,8 @@ class RelevanceEvaluator:
         for metric, scores in self.results_judge.items():
             mean_score = sum(scores) / len(scores) if scores else 0
             print(f"{metric}: Mean = {mean_score:.4f}")
+        structure_score = sum(self.structure)/len(self.structure)
+        print(f"结构化指标：{structure_score:.4f}")
 
     def run(self):
         """运行整个评估流程"""

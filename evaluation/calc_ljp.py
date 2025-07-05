@@ -24,6 +24,7 @@ def parse_crime(text):
             return []
     else:
         print("未找到罪名字段")
+        print(text)
         return []
 
 
@@ -42,6 +43,7 @@ def parse_prison(text):
             return []
     else:
         print("未找到刑期字段")
+        print(text)
         return []
 
 
@@ -60,6 +62,7 @@ def parse_laws(text):
             return []
     else:
         print("未找到法律条款字段")
+        print(text)
         return []
 
 
@@ -78,6 +81,7 @@ def parse_fine(text):
             return []
     else:
         print("未找到罚款字段")
+        print(text)
         return []
 
 def get_crime(raw_list):
@@ -178,6 +182,7 @@ class MetricsCalculator:
             for i, item in enumerate(lines):
                 exp_data[i] = item['exp_ans']
                 gen_data[i] = item['gen_ans']
+                # print(gen_data[i])
         return gen_data, exp_data
     
 

@@ -123,7 +123,8 @@ def case_text(case):
     law_text = case["laws"]
     fine = case["fine"]
 
-    case1 = f"""认定事实:{fact},罪名:{crime},法律条款:{law_text},刑期:{prison},罚金:{fine}"""
+    # case1 = f"""认定事实:{fact},罪名:{crime},法律条款:{law_text},刑期:{prison},罚金:{fine}"""
+    case1 = f"""罪名:{crime},法律条款:{law_text},刑期:{prison},罚金:{fine}"""
     return "{" + case1 + "}"
 
 # 示例调用
@@ -141,7 +142,7 @@ case_corpus_path = '../data/all_amend.json'
 law_result = extract_law_texts(law_runfile_path, law_corpus_path)
 case_result = extract_case_texts(case_runfile_path, case_corpus_path, law_corpus_path, queryId_to_text)
 
-jsonl_file_path = '../train/test_ljp.json'
+jsonl_file_path = '../train/test_ljp_nocasefact.json'
 queryId_to_ljp = build_case_id_text_mapping(case_corpus_path)
 with open(jsonl_file_path, 'w') as jsonl_file:
     for query_id, laws in law_result.items():
@@ -154,7 +155,13 @@ with open(jsonl_file_path, 'w') as jsonl_file:
          
 
         all_laws = laws[:10] # 只取top10
-        relevant_laws = "\n".join([f"{i+1}. {law}" for i, law in enumerate(all_laws)])
+        # relevant_laws = "\n".join([f"{i+1}. {law}" for i, law in enumerate(all_laws)])
+        filter_laws = []
+        for law in all_laws:
+            if law not in cases[0]["laws"]:
+                filter_laws.append(law)
+        # print(len(filter_laws))
+        relevant_laws = "\n".join([f"{i+1}. {law}" for i, law in enumerate(filter_laws)])
 
         judgment_content = f"""
 ###任务要求

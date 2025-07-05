@@ -5,17 +5,17 @@ import time
 from datetime import datetime
 from tqdm import tqdm
 
-input_file = "/home/ubuntu/JuDGE_edit/train/test_multi.json"
+input_file = "/home/ubuntu/JuDGE_edit/train/test_doc_template_nocase.json"
 # 1. 配置参数
 CONFIG = {
-    "model": "/home/ubuntu/weight/wubinglin/Qwen2.5-72B-Instruct-AWQ",
-    "quantization": "awq",
+    "model": "/home/ubuntu/weight/wubinglin/Qwen2.5-72B-Instruct",
+    # "quantization": "awq",
     "tensor_parallel_size": 8,
     "max_model_len": 8192,
-    "output_file": f"awq_mrag.json"
+    "output_file": f"fp16-72b-doc-tp-nc.json"
 }
 
-MAX_BATCH_SIZE = 501
+MAX_BATCH_SIZE = 128
 
 # 2. 采样参数设置
 SAMPLING_PARAMS = SamplingParams(
@@ -36,12 +36,12 @@ def run_batch_inference():
     # 初始化模型
     llm = LLM(
         model=CONFIG["model"],
-        quantization=CONFIG["quantization"],
+        # quantization=CONFIG["quantization"],
         tensor_parallel_size=CONFIG["tensor_parallel_size"],
         max_model_len=CONFIG["max_model_len"],
         trust_remote_code=True,
-        gpu_memory_utilization=0.7,
-        max_num_seqs=128
+        gpu_memory_utilization=0.85,
+        max_num_seqs=64
     )
     tokenizer = llm.get_tokenizer()
 
